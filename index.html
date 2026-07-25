@@ -2,19 +2,20 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title> การเดินทางของเราสองคน 💕</title>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&family=Mali:wght@500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        * { box-sizing: border-box; font-family: 'Prompt', sans-serif; margin: 0; padding: 0; }
+        * { box-sizing: border-box; font-family: 'Prompt', sans-serif; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { 
             background: linear-gradient(135deg, #ffeef1 0%, #ffd1dc 100%);
             color: #4a4a4a; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            min-height: 100vh; 
+            min-height: 100vh;
+            min-height: 100dvh;
             overflow-x: hidden; 
         }
         
@@ -23,6 +24,7 @@
             max-width: 440px; 
             background: #ffffff; 
             height: 100vh; 
+            height: 100dvh;
             max-height: 900px;
             box-shadow: 0 10px 30px rgba(216, 27, 96, 0.12); 
             position: relative; 
@@ -61,6 +63,15 @@
             transition: all 0.2s;
         }
         .pin-input:focus { border-color: #d81b60; box-shadow: 0 0 8px rgba(216, 27, 96, 0.3); }
+
+        .pin-input::-webkit-outer-spin-button,
+        .pin-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .pin-input[type=number] {
+            -moz-appearance: textfield;
+        }
         
         .btn { 
             background: linear-gradient(45deg, #ff4081, #d81b60); 
@@ -72,12 +83,133 @@
         }
         .btn:active { transform: scale(0.96); }
 
-        /* Pop-up */
+        /* Pop-up Standard */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(3px); display: none; justify-content: center; align-items: center; z-index: 1000; }
         .modal-box { background: #ffffff; padding: 25px; border-radius: 22px; width: 80%; max-width: 320px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.15); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         @keyframes popIn { 0% { transform: scale(0.7); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         .modal-box h3 { color: #d81b60; margin-bottom: 10px; font-size: 18px; }
         .modal-box p { color: #666; margin-bottom: 20px; font-size: 14px; }
+
+        /* 🎮 Pop-up RPG Player Profile Card */
+        .profile-card-box {
+            background: linear-gradient(160deg, #2a2a38 0%, #1f1f2e 100%);
+            border: 2px solid #ff80ab;
+            border-radius: 20px;
+            padding: 20px;
+            width: 85%;
+            max-width: 330px;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(216, 27, 96, 0.3);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: left;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+        }
+        .profile-avatar {
+            font-size: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 50px; height: 50px;
+            display: flex; justify-content: center; align-items: center;
+            border: 1px solid #ff80ab;
+        }
+        .profile-title { font-size: 16px; font-weight: 600; color: #ff80ab; font-family: 'Mali', cursive; }
+        .profile-subtitle { font-size: 11px; color: #aaa; }
+        .stat-row { font-size: 12px; margin-bottom: 8px; font-family: 'Mali', cursive; }
+        .hp-bar-bg {
+            background: rgba(255, 255, 255, 0.1);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 3px;
+            border: 1px solid #ff4081;
+        }
+        .hp-bar-fill {
+            background: linear-gradient(90deg, #ff80ab, #d81b60);
+            height: 100%;
+            width: 100%;
+        }
+        .skill-tag {
+            display: inline-block;
+            background: rgba(255, 128, 171, 0.2);
+            border: 1px solid #ff80ab;
+            color: #ffe0e9;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-top: 4px;
+            margin-right: 4px;
+        }
+
+        /* 🏆 Achievement Toast */
+        .achievement-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(34, 34, 34, 0.95);
+            color: #fff;
+            border: 2px solid #ffd700;
+            padding: 10px 16px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            transform: translateY(120px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .achievement-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .achievement-icon { font-size: 26px; }
+        .achievement-title { font-size: 10px; color: #ffd700; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
+        .achievement-name { font-size: 13px; font-weight: 600; color: #ffffff; font-family: 'Mali', cursive; }
+
+        /* 🎮 ปุ่มควบคุมมุมซ้ายบน */
+        .top-left-controls {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            display: none;
+            align-items: center;
+            gap: 6px;
+            z-index: 100;
+        }
+        .game-profile-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1.5px solid #ff80ab;
+            color: #d81b60;
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            font-family: 'Mali', cursive;
+            transition: transform 0.2s;
+        }
+        .game-profile-btn:active { transform: scale(1.1); }
+
+        .achievement-tracker {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1.5px solid #ffc2d4;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            color: #d81b60;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            font-family: 'Mali', cursive;
+        }
 
         /* --- หน้าหลัก --- */
         #main-content { 
@@ -147,14 +279,13 @@
             z-index: 2;
         }
         
-        /* 📌 ปรับแก้ไข CSS รูปภาพให้ไม่โดนตัดขอบอีกต่อไป */
         .card-polaroid img { 
             width: 100%; 
             max-height: 250px; 
             border-radius: 8px; 
             display: block; 
-            object-fit: contain; /* ปรับรูปให้อยู่ในกรอบสมบูรณ์ ไม่ตัดหัวตัดท้าย */
-            background-color: #fffdfd; /* สีพื้นหลังรองรับรูปย่อ */
+            object-fit: contain;
+            background-color: #fffdfd;
             animation: blurReveal 0.8s ease-out forwards;
         }
         
@@ -307,18 +438,57 @@
 <body>
 
     <div class="container" id="appContainer">
+        <!-- 🎮 ปุ่มควบคุมและ Tracker มุมซ้ายบน -->
+        <div class="top-left-controls" id="topLeftControls">
+            <button class="game-profile-btn" onclick="openProfileModal()">🎮 Player 2</button>
+            <div class="achievement-tracker" id="achievementTracker">🏆 0/5</div>
+        </div>
+
+        <!-- 🏆 กล่องป๊อปอัป Achievement Unlocked! -->
+        <div class="achievement-toast" id="achievementToast">
+            <div class="achievement-icon">🏆</div>
+            <div>
+                <div class="achievement-title">Achievement Unlocked!</div>
+                <div class="achievement-name" id="achievementName">ภารกิจสำเร็จ!</div>
+            </div>
+        </div>
+
+        <!-- 🎮 Pop-up RPG Player 2 Profile Card -->
+        <div id="profileModal" class="modal-overlay">
+            <div class="profile-card-box">
+                <div class="profile-header">
+                    <div class="profile-avatar">👸🏻</div>
+                    <div>
+                        <div class="profile-title">ลมหนาว (Player 2)</div>
+                        <div class="profile-subtitle">Class: Cute Princess • Level 99</div>
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <div>HP (Happiness): 100 / 100</div>
+                    <div class="hp-bar-bg"><div class="hp-bar-fill"></div></div>
+                </div>
+                <div class="stat-row" style="margin-top:10px;">
+                    <div>Special Skills:</div>
+                    <span class="skill-tag">✨ ยิ้มทีเดียวละลาย</span>
+                    <span class="skill-tag">💖 ตกหัวใจพี่ (+9999)</span>
+                    <span class="skill-tag">🌸 น่ารักตลอดเวลา 24/7</span>
+                </div>
+                <button class="btn" style="width:100%; margin-top:15px; padding:8px;" onclick="closeProfileModal()">ปิดการ์ดสเตตัส ✖</button>
+            </div>
+        </div>
+
         <!-- หน้าใส่รหัสผ่าน -->
         <div id="login-screen">
             <div class="login-icon">💌</div>
             <h2>รหัสอะไรน๊าาา</h2>
             <p class="subtitle">ใส่รหัสผ่าน 6 หลัก (จำวันแรกที่เราคุยกันได้มั้ยคะ)</p>
             <div class="pin-inputs">
-                <input type="password" maxlength="1" class="pin-input" autofocus>
-                <input type="password" maxlength="1" class="pin-input">
-                <input type="password" maxlength="1" class="pin-input">
-                <input type="password" maxlength="1" class="pin-input">
-                <input type="password" maxlength="1" class="pin-input">
-                <input type="password" maxlength="1" class="pin-input">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-input" autofocus>
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
             </div>
             <button class="btn" onclick="checkPin()">ปลดล็อกความทรงจำ 🔓</button>
         </div>
@@ -450,7 +620,7 @@
         </div>
         
         <!-- ไฟล์เสียงเพลง -->
-        <audio id="bgMusic" loop>
+        <audio id="bgMusic" playsinline preload="auto">
             <source src="love.mp3" type="audio/mp3">
         </audio>
     </div>
@@ -463,6 +633,52 @@
         let totalPages = 0;
         let typeTimer = null;
         let lockTimer = null;
+        let isPlaying = false;
+
+        let music = document.getElementById('bgMusic');
+
+        // 🎮 --- ระบบ Achievement Gamification ---
+        const unlockedAchievements = new Set();
+        let heartClickCount = 0;
+
+        function unlockAchievement(id, name) {
+            if (unlockedAchievements.has(id)) return;
+            unlockedAchievements.add(id);
+
+            const toast = document.getElementById('achievementToast');
+            const nameElem = document.getElementById('achievementName');
+            const tracker = document.getElementById('achievementTracker');
+
+            nameElem.innerText = name;
+            toast.classList.add('show');
+            fireConfetti();
+
+            tracker.innerText = `🏆 ${unlockedAchievements.size}/5`;
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+
+        function openProfileModal() {
+            document.getElementById('profileModal').style.display = 'flex';
+            unlockAchievement('gamer_profile', '🎮 Gamer Girl: เปิดดูการ์ดสเตตัสตัวละคร!');
+        }
+
+        function closeProfileModal() {
+            document.getElementById('profileModal').style.display = 'none';
+        }
+
+        // 🎵 ระบบ Playlist เล่นเพลงต่อเนื่องอัตโนมัติ
+        const playlist = ['love.mp3', 'love2.mp3'];
+        let currentSongIndex = 0;
+
+        music.onended = function() {
+            currentSongIndex = (currentSongIndex + 1) % playlist.length;
+            music.src = playlist[currentSongIndex];
+            music.play();
+            unlockAchievement('music', '🎶 Music Lover: เพลงรักของเรา!');
+        };
 
         const startDate = new Date('2026-07-19');
         const today = new Date();
@@ -491,13 +707,21 @@
         inputs.forEach((input, index) => {
             input.addEventListener('input', (e) => {
                 const value = e.target.value;
-                if (value && index < inputs.length - 1) { inputs[index + 1].focus(); }
+                if (value.length > 1) {
+                    e.target.value = value.slice(0, 1);
+                }
+                if (e.target.value && index < inputs.length - 1) { 
+                    inputs[index + 1].focus(); 
+                }
             });
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Backspace') {
-                    e.preventDefault();
-                    if (input.value !== '') { input.value = ''; } 
-                    else if (index > 0) { inputs[index - 1].focus(); inputs[index - 1].value = ''; }
+                    if (input.value !== '') { 
+                        input.value = ''; 
+                    } else if (index > 0) { 
+                        inputs[index - 1].focus(); 
+                        inputs[index - 1].value = ''; 
+                    }
                 }
             });
         });
@@ -514,8 +738,17 @@
         }
 
         function sendHeartBurst() {
+            heartClickCount++;
             for (let i = 0; i < 8; i++) {
                 setTimeout(createHeart, i * 80);
+            }
+            if (heartClickCount >= 5 && heartClickCount < 7) {
+                unlockAchievement('spammer', '💖 Love Spammer: ส่งหัวใจรัวๆ!');
+            } else if (heartClickCount >= 7) {
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(createHeart, i * 40);
+                }
+                unlockAchievement('god_mode', '⚡ GOD MODE: ปลดล็อกพลังความรักอนันต์!');
             }
         }
 
@@ -571,16 +804,27 @@
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'flex';
                 document.getElementById('musicControlBox').style.display = 'flex';
+                document.getElementById('topLeftControls').style.display = 'flex';
                 
-                let music = document.getElementById('bgMusic');
+                // 🎵 บังคับสั่งเล่นเพลงอัตโนมัติทันทีที่กดปุ่มปลดล็อก
                 music.volume = 0.25; 
-                music.play().catch(error => console.log("Autoplay blocked"));
+                let playPromise = music.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        isPlaying = true;
+                        document.getElementById('musicBtn').classList.add('spinning');
+                        document.getElementById('musicBtn').style.opacity = "1";
+                    }).catch(error => {
+                        console.log("Autoplay blocked: ", error);
+                    });
+                }
                 
                 setInterval(createHeart, 400);
-                fireConfetti(); 
                 initPagination(); 
                 startTypewriter(0);
                 lockNextButton();
+
+                unlockAchievement('pin', '🔓 First Step: ถอดรหัสหัวใจสำเร็จ!');
             } else {
                 failCount++; 
                 let titleElem = document.getElementById('modalTitle');
@@ -617,6 +861,8 @@
             } else {
                 document.getElementById('nextBtn').disabled = true;
                 document.getElementById('nextBtn').innerText = 'หน้าสุดท้าย 💕';
+                
+                unlockAchievement('master', '🏆 Master of Memories: ผู้เชี่ยวชาญความทรงจำ!');
             }
 
             startTypewriter(currentPage);
@@ -656,9 +902,7 @@
             inputs[0].focus();
         }
 
-        let isPlaying = true;
         function toggleMusic() {
-            let music = document.getElementById('bgMusic');
             let btn = document.getElementById('musicBtn');
             if (isPlaying) { 
                 music.pause(); 
@@ -668,12 +912,12 @@
                 music.play(); 
                 btn.classList.add('spinning');
                 btn.style.opacity = "1"; 
+                unlockAchievement('music', '🎶 Music Lover: เสียงเพลงบันดาลใจ!');
             }
             isPlaying = !isPlaying;
         }
 
         function setVolume(val) {
-            let music = document.getElementById('bgMusic');
             music.volume = val;
         }
     </script>
