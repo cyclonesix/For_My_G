@@ -268,7 +268,6 @@
             animation: bounce 1.5s infinite;
         }
 
-        /* เมื่อกดเปิดจดหมาย */
         .envelope-container.open .envelope-wrapper::before {
             transform: rotateX(180deg);
             z-index: 1;
@@ -494,7 +493,7 @@
             position: relative;
             min-height: 200px;
         }
-        .question-card h3 { color: #d81b60; font-family: 'Mali', cursive; font-size: 20px; margin-bottom: 25px; }
+        .question-card h3 { color: #d81b60; font-family: 'Mali', cursive; font-size: 19px; margin-bottom: 25px; transition: all 0.2s; }
         .question-buttons { display: flex; flex-direction: column; gap: 12px; align-items: center; position: relative; }
         .q-btn {
             background: #fff0f5;
@@ -647,7 +646,7 @@
                         <div class="heart-seal">❤️</div>
                         <div class="envelope-front"></div>
                         <div class="letter-content">
-                           <img src="https://i.ibb.co/KTPkZ7q/Chat-GPT-Image-26-2569-21-04-21.png" alt="Chat GPT Image 26 ก ค 2569 21 04 21" border="0">
+                           <img src="https://i.ibb.co/KTPkZ7q/Chat-GPT-Image-26-2569-21-04-21.png" alt="Memory Envelope">
                             <p>พี่ขอโทษนะคะลมหนาว ลมหนาวบอกพี่ได้มั้ยคะว่าหนูเป็นอะไร พี่ทำอะไรผิด พี่ก็อยากจะคุยด้วย หากเรื่องไหนที่เราไม่เข้าใจกัน พูดคุยกันได้มั้ยคะ อย่าเงียบไปเลย พี่รักหนูนะคะ 💕</p>
                         </div>
                     </div>
@@ -743,7 +742,7 @@
                     <div class="timeline-item">
                         <div class="date">📅 25 july 2026</div>
                         <div class="card-polaroid">
-                           <img src="https://i.ibb.co/d4BTrftL/Chat-GPT-Image-26-2569-00-07-50.png" alt="Chat GPT Image 26 ก ค 2569 00 07 50" border="0">
+                           <img src="https://i.ibb.co/d4BTrftL/Chat-GPT-Image-26-2569-00-07-50.png" alt="Memory 4">
                             <p>ขอโทษที่ทำตัวงี่เง่านะคะ 💕</p>
                         </div>
                         <div class="love-note-box">
@@ -765,11 +764,11 @@
                         <div class="sticker-footer"><span>👩‍❤️‍👨 Sweet Moment</span><span>•</span><span>Love You 💕</span></div>
                     </div>
 
-                    <!-- 📌 หน้าคำถามเซอร์ไพรส์ (วางไว้เป็นหน้าสุดท้ายเสมอ) -->
+                    <!-- 📌 หน้าคำถามเซอร์ไพรส์ พร้อมระบบกล่องคำพูดโต้ตอบ -->
                     <div class="timeline-item">
                         <div class="date">📅 One Last Question...</div>
                         <div class="question-card">
-                            <h3>รักพี่เหมือนกันมั้ยคะ? 🥺💖</h3>
+                            <h3 id="questionTitleText">รักพี่เหมือนกันมั้ยคะ? 🥺💖</h3>
                             <div class="question-buttons">
                                 <button class="q-btn" onclick="answerLove('รักสิคะ 💕')">รักสิคะ 💕</button>
                                 <button class="q-btn q-btn-run" id="noBtn" onmouseover="moveButton()" onclick="moveButton()">ไม่อยากบอก 😜</button>
@@ -813,6 +812,7 @@
         let typeTimer = null;
         let lockTimer = null;
         let isPlaying = false;
+        let noBtnClickCount = 0;
 
         let music = document.getElementById('bgMusic');
 
@@ -848,14 +848,12 @@
             document.getElementById('profileModal').style.display = 'none';
         }
 
-        // ✉️ ฟังก์ชันเปิด/ปิด หน้าต่าง Pop-up จดหมายง้อ
         function openApologyModal() {
             document.getElementById('apologyModal').style.display = 'flex';
         }
 
         function closeApologyModal() {
             document.getElementById('apologyModal').style.display = 'none';
-            // รีเซ็ตจดหมายให้อยู่ในสถานะปิดเมื่อปิด Pop-up
             document.getElementById('apologyEnvelope').classList.remove('open');
         }
 
@@ -1004,7 +1002,6 @@
                 document.getElementById('musicControlBox').style.display = 'flex';
                 document.getElementById('topLeftControls').style.display = 'flex';
                 
-                // 🎵 บังคับสั่งเล่นเพลงอัตโนมัติทันทีที่กดปุ่มปลดล็อก
                 music.volume = 0.25; 
                 let playPromise = music.play();
                 if (playPromise !== undefined) {
@@ -1012,9 +1009,7 @@
                         isPlaying = true;
                         document.getElementById('musicBtn').classList.add('spinning');
                         document.getElementById('musicBtn').style.opacity = "1";
-                    }).catch(error => {
-                        console.log("Autoplay blocked: ", error);
-                    });
+                    }).catch(error => console.log("Autoplay blocked"));
                 }
                 
                 setInterval(createHeart, 400);
@@ -1059,18 +1054,29 @@
             } else {
                 document.getElementById('nextBtn').disabled = true;
                 document.getElementById('nextBtn').innerText = 'หน้าสุดท้าย 💕';
-                
                 unlockAchievement('master', '🏆 Master of Memories: ผู้เชี่ยวชาญความทรงจำ!');
             }
 
             startTypewriter(currentPage);
         }
 
+        // 💬 ฟังก์ชันย้ายปุ่มหนี + ระบบกล่องคำพูดโต้ตอบ
         function moveButton() {
+            noBtnClickCount++;
             const btn = document.getElementById('noBtn');
+            const title = document.getElementById('questionTitleText');
+            
             const x = (Math.random() - 0.5) * 160;
             const y = (Math.random() - 0.5) * 100;
             btn.style.transform = `translate(${x}px, ${y}px)`;
+
+            if (noBtnClickCount === 1) {
+                title.innerText = "ใจร้ายจัง ตอบรักพี่ก่อนน้า 🥺💖";
+            } else if (noBtnClickCount === 3) {
+                title.innerText = "จับปุ่มให้ได้ก่อนเร็ว 😜💕";
+            } else if (noBtnClickCount >= 5) {
+                title.innerText = "ยอมกดรักพี่เถอะน้าาา 🥰";
+            }
         }
 
         function answerLove(choice) {
