@@ -90,6 +90,82 @@
         .modal-box h3 { color: #d81b60; margin-bottom: 10px; font-size: 18px; }
         .modal-box p { color: #666; margin-bottom: 20px; font-size: 14px; }
 
+        /* หน้าเกริ่นเรื่องหลังปลดล็อก */
+        #intro-screen {
+            position: absolute;
+            inset: 0;
+            z-index: 19;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 32px 26px;
+            text-align: center;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,.9) 0 4%, transparent 5%),
+                linear-gradient(160deg, #fff9fb 0%, #ffe0e9 100%);
+        }
+        .intro-heart { font-size: 58px; animation: pulse 1.5s infinite; margin-bottom: 12px; }
+        .intro-kicker { color: #ff80ab; font-family: 'Mali', cursive; font-size: 12px; letter-spacing: .5px; }
+        .intro-title { color: #d81b60; font-family: 'Mali', cursive; font-size: 25px; margin: 8px 0 14px; }
+        .intro-copy { color: #765964; font-family: 'Mali', cursive; font-size: 14px; line-height: 1.85; max-width: 340px; }
+        .intro-date {
+            margin: 18px 0 22px;
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,.72);
+            border: 1px solid #ffc2d4;
+            color: #d81b60;
+            font-size: 12px;
+        }
+        .intro-music-control {
+            width: min(100%, 270px);
+            margin-top: 14px;
+            padding: 9px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 18px;
+            background: rgba(255,255,255,.72);
+            border: 1px solid #ffc2d4;
+            box-shadow: 0 5px 14px rgba(216,27,96,.08);
+        }
+        .intro-music-btn {
+            flex: 0 0 auto;
+            min-width: 78px;
+            border: 0;
+            background: transparent;
+            color: #d81b60;
+            font: 600 11px 'Mali', cursive;
+            cursor: pointer;
+        }
+        .intro-volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            flex: 1;
+            min-width: 0;
+            height: 5px;
+            border-radius: 5px;
+            background: #ffc2d4;
+            outline: none;
+            cursor: pointer;
+        }
+        .intro-volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #e91e63;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 6px rgba(216,27,96,.35);
+        }
+        .intro-volume-value {
+            width: 30px;
+            color: #a17887;
+            font-size: 10px;
+            text-align: right;
+        }
+
         /* 🔍 Pop-up Photo Lightbox */
         .lightbox-box {
             background: #ffffff;
@@ -123,6 +199,24 @@
             box-shadow: 0 10px 30px rgba(216, 27, 96, 0.3);
             animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: left;
+            max-height: 82vh;
+            overflow-y: auto;
+        }
+        .player-divider {
+            margin: 15px 0;
+            border: 0;
+            border-top: 1px dashed rgba(255,255,255,.22);
+        }
+        .party-badge {
+            margin-top: 13px;
+            padding: 8px 10px;
+            border-radius: 12px;
+            background: rgba(255,128,171,.13);
+            border: 1px solid rgba(255,128,171,.45);
+            color: #ffe0e9;
+            font-family: 'Mali', cursive;
+            font-size: 11px;
+            text-align: center;
         }
         .profile-header {
             display: flex;
@@ -484,6 +578,7 @@
             flex-direction: column; 
             height: 100%; 
             justify-content: space-between; 
+            overflow-y: auto;
         }
         .header-title { text-align: center; color: #d81b60; font-size: 22px; font-family: 'Mali', cursive; margin-bottom: 2px; }
         .header-subtext { text-align: center; color: #a17887; font-size: 12px; margin-bottom: 6px; }
@@ -642,6 +737,23 @@
         }
         .love-note-box p { color: #d81b60; font-family: 'Mali', cursive; font-size: 12.5px; line-height: 1.5; font-weight: 500; }
 
+        .memory-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin-top: 7px;
+        }
+        .memory-detail span {
+            padding: 5px 7px;
+            border-radius: 9px;
+            background: #fff8fa;
+            border: 1px solid #fce4ec;
+            color: #9a6175;
+            font-family: 'Mali', cursive;
+            font-size: 10px;
+            text-align: center;
+        }
+
         .sticker-footer {
             display: flex;
             justify-content: center;
@@ -685,6 +797,21 @@
             transition: all 0.15s ease-out;
         }
 
+        .ending-card {
+            background: linear-gradient(145deg, #fff 0%, #fff0f5 100%);
+            border: 2px solid #ffc2d4;
+            border-radius: 22px;
+            padding: 22px 16px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(216,27,96,.12);
+        }
+        .ending-icon { font-size: 48px; margin-bottom: 8px; }
+        .ending-card h3 { color: #d81b60; font: 600 20px 'Mali', cursive; margin-bottom: 10px; }
+        .ending-card p { color: #765964; font: 13px/1.8 'Mali', cursive; margin-bottom: 14px; }
+        .ending-actions { display: flex; flex-direction: column; gap: 8px; }
+        .ending-actions .btn { width: 100%; padding: 9px 14px; font-size: 12px; }
+        .ending-actions .btn.secondary { color: #d81b60; background: #fff; border: 1.5px solid #ff80ab; box-shadow: none; }
+
         /* ตัวบอกหน้า (Page Indicator) */
         .page-indicator { display: flex; justify-content: center; gap: 6px; margin: 10px 0 6px 0; }
         .dot { width: 7px; height: 7px; background: #f8bbd0; border-radius: 50%; transition: all 0.3s; }
@@ -716,6 +843,16 @@
         /* เอฟเฟกต์หัวใจลอย */
         .floating-heart { position: absolute; bottom: -20px; color: #ff4081; font-size: 18px; animation: floatUp 4s linear infinite; z-index: 1; user-select: none; }
         @keyframes floatUp { 0% { transform: translateY(0) scale(0.8); opacity: 1; } 100% { transform: translateY(-750px) scale(1.3); opacity: 0; } }
+
+        @media (max-height: 700px) {
+            #main-content { padding-top: 10px; }
+            .header-title { font-size: 19px; }
+            .header-subtext { display: none; }
+            .card-front img { max-height: 175px; }
+            .love-note-box { min-height: 48px; padding: 7px; }
+            .love-note-box p { font-size: 11.5px; }
+            .memory-detail span { padding: 4px; font-size: 9px; }
+        }
     </style>
 </head>
 <body>
@@ -725,7 +862,7 @@
         <div class="fab-menu-container" id="fabMenuContainer">
             <div class="fab-main-btn" onclick="toggleFabMenu()">⚙️</div>
             <div class="fab-options">
-                <button class="fab-item-btn" onclick="openProfileModal(); toggleFabMenu();">🎮 Player 2</button>
+                <button class="fab-item-btn" onclick="openProfileModal(); toggleFabMenu();">🎮 Player 1 & 2</button>
                 <button class="fab-item-btn" onclick="openApologyModal(); toggleFabMenu();">💌 จดหมายง้อ</button>
                 <button class="fab-item-btn" onclick="openGachaModal(); toggleFabMenu();">🎰 สุ่มกาชา</button>
                 <button class="fab-item-btn" onclick="toggleMusic();">🎵 สลับเพลง (เปิด/ปิด)</button>
@@ -755,9 +892,27 @@
             </div>
         </div>
 
-        <!-- 🎮 Pop-up RPG Player 2 Profile Card -->
+        <!-- 🎮 Pop-up RPG Couple Profile Card -->
         <div id="profileModal" class="modal-overlay">
             <div class="profile-card-box">
+                <div class="profile-header">
+                    <div class="profile-avatar">🤴🏻</div>
+                    <div>
+                        <div class="profile-title">พี่ (Player 1)</div>
+                        <div class="profile-subtitle">Class: Heart Keeper • Level 99</div>
+                    </div>
+                </div>
+                <div class="stat-row">
+                    <div>Mission: ดูแลรอยยิ้มของลมหนาว</div>
+                    <div class="hp-bar-bg"><div class="hp-bar-fill"></div></div>
+                </div>
+                <div class="stat-row" style="margin-top:10px;">
+                    <div>Special Skills:</div>
+                    <span class="skill-tag">🛡️ พร้อมอยู่ข้างหนู</span>
+                    <span class="skill-tag">💌 ง้อจนกว่าจะหายงอน</span>
+                    <span class="skill-tag">❤️ รักลมหนาว (+∞)</span>
+                </div>
+                <hr class="player-divider">
                 <div class="profile-header">
                     <div class="profile-avatar">👸🏻</div>
                     <div>
@@ -775,6 +930,7 @@
                     <span class="skill-tag">💖 ตกหัวใจพี่ (+9999)</span>
                     <span class="skill-tag">🌸 น่ารักตลอดเวลา 24/7</span>
                 </div>
+                <div class="party-badge">👩‍❤️‍👨 PARTY JOINED: 19 JULY 2026<br>สถานะทีม: จับมือกันผ่านทุกภารกิจ 💕</div>
                 <button class="btn" style="width:100%; margin-top:15px; padding:8px;" onclick="closeProfileModal()">ปิดการ์ดสเตตัส ✖</button>
             </div>
         </div>
@@ -824,6 +980,21 @@
             <button class="btn" onclick="checkPin()">ปลดล็อกความทรงจำ 🔓</button>
         </div>
 
+        <!-- หน้าเกริ่นเรื่อง -->
+        <div id="intro-screen">
+            <div class="intro-heart">💖</div>
+            <div class="intro-kicker">OUR LITTLE MEMORY ARCHIVE</div>
+            <h2 class="intro-title">ยินดีต้อนรับนะคะ ลมหนาว</h2>
+            <p class="intro-copy">ที่นี่เก็บเรื่องราวเล็ก ๆ ที่มีความหมายกับพี่เอาไว้<br>ลองเปิดดูทีละหน้า แล้วหนูจะรู้ว่าตั้งแต่วันที่เราได้คุยกัน หนูสำคัญกับพี่มากแค่ไหน</p>
+            <div class="intro-date">เรื่องราวของเราเริ่มต้นเมื่อ 19 กรกฎาคม 2026 ✨</div>
+            <button class="btn" onclick="startJourney()">เริ่มเปิดความทรงจำของเรา 💕</button>
+            <div class="intro-music-control" aria-label="ตัวควบคุมระดับเสียงเพลง">
+                <button class="intro-music-btn" id="introMusicBtn" onclick="toggleMusic()">🔊 เปิดเพลง</button>
+                <input type="range" class="intro-volume-slider" id="introVolumeControl" min="0" max="1" step="0.05" value="0.25" oninput="setVolume(this.value)" aria-label="ระดับเสียงเพลง">
+                <span class="intro-volume-value" id="introVolumeValue">25%</span>
+            </div>
+        </div>
+
         <!-- Pop-up เมื่อใส่รหัสผิด -->
         <div id="errorModal" class="modal-overlay">
             <div class="modal-box">
@@ -838,7 +1009,7 @@
             <div class="modal-box">
                 <h3 id="loveTitle">เย้! น่ารักที่สุดเลย 💖</h3>
                 <p id="loveText">พี่ก็รักหนูที่สุดเหมือนกันนะคะ ขอบคุณที่อยู่ข้างกันน้า 👩‍❤️‍👨✨</p>
-                <button class="btn" onclick="closeLoveModal()">รักนะตัวแค่นี้ 🥰</button>
+                <button class="btn" onclick="showEnding()">ไปดูข้อความสุดท้าย 💕</button>
             </div>
         </div>
 
@@ -850,7 +1021,7 @@
                 
                 <div class="header-badge-group">
                     <div class="love-counter-badge">✨ คุยกันมา <span id="loveTimer">0 วัน 0 ชม. 0 นาที 0 วินาที</span> ✨</div>
-                    <div class="achievement-tracker-badge" id="achievementTracker">🏆 0/6</div>
+                    <div class="achievement-tracker-badge" id="achievementTracker">🏆 0/9</div>
                 </div>
             </div>
 
@@ -874,6 +1045,7 @@
                         <div class="love-note-box">
                             <p class="typewriter-text" data-text="ไงคะ ลมหนาว พี่ไม่รู้หรอกว่าหนูจะคุยกับพี่ไปอีกนานแค่ไหน แต่พี่จะบอกกับหนูว่า พี่ชอบหนูนะคะ 💖"></p>
                         </div>
+                        <div class="memory-detail"><span>📍 จุดเริ่มต้นของเรา</span><span>💭 ความรู้สึก: ตื่นเต้นมาก</span></div>
                         <div class="sticker-footer"><span>🌸 Memory #01</span><span>•</span><span>Special Day ✨</span></div>
                     </div>
 
@@ -895,6 +1067,7 @@
                         <div class="love-note-box">
                             <p class="typewriter-text" data-text="ขอบคุณนะคะที่อยู่ด้วยกัน ขอบคุณมากๆ ตอนนี้พี่ขาดหนูไม่ได้เลยยย 🥺💕"></p>
                         </div>
+                        <div class="memory-detail"><span>🌙 ช่วงเวลา: คืนที่นอนดึก</span><span>💭 สิ่งที่จำได้: ไม่อยากวางสาย</span></div>
                         <div class="sticker-footer"><span>🌙 Late Night</span><span>•</span><span>Happy Moment 💖</span></div>
                     </div>
 
@@ -916,6 +1089,7 @@
                         <div class="love-note-box">
                             <p class="typewriter-text" data-text="สำหรับหนูแล้ว การมีพี่เข้าไปในชีวิตหนูจะมีความสุขมั้ยคะ 💕"></p>
                         </div>
+                        <div class="memory-detail"><span>🥰 ช่วงเวลา: ตกหลุมรัก</span><span>💭 ความรู้สึก: ยิ่งรู้จักยิ่งชอบ</span></div>
                         <div class="sticker-footer"><span>🥰 Fall in love</span><span>•</span><span>Forever & Ever ✨</span></div>
                     </div>
 
@@ -937,6 +1111,7 @@
                         <div class="love-note-box">
                             <p class="typewriter-text" data-text="เพราะว่าหนูน่ารัก พี่เลยหวงหนูเป็นธรรมดา ไม่สิ หวงมากๆ อาจจะทำให้หนูดูหงุดหงิด ช่วยเข้าใจพี่ด้วยนะคะ เพราะพี่ รักหนูจริงๆ 💕"></p>
                         </div>
+                        <div class="memory-detail"><span>🤍 บทเรียน: รับฟังกันให้มากขึ้น</span><span>🫶 คำสัญญา: จะดูแลความรู้สึกหนู</span></div>
                         <div class="sticker-footer"><span>💕 Sorry Na ลมหนาว </span><span>•</span><span>Forever & Ever ✨</span></div>
                     </div>
 
@@ -958,6 +1133,7 @@
                         <div class="love-note-box">
                             <p class="typewriter-text" data-text="ขอบคุณสำหรับทุกอย่างนะคะ พี่รักหนูที่สุดเลย อยู่กับพี่ไปเรื่อยๆนะคะ 👩‍❤️‍👨✨"></p>
                         </div>
+                        <div class="memory-detail"><span>📖 ตอนปัจจุบัน: กำลังเขียนต่อ</span><span>💕 เป้าหมาย: อยู่ข้างกันนาน ๆ</span></div>
                         <div class="sticker-footer"><span>👩‍❤️‍👨 Sweet Moment</span><span>•</span><span>Love You 💕</span></div>
                     </div>
 
@@ -969,6 +1145,21 @@
                             <div class="question-buttons">
                                 <button class="q-btn" onclick="answerLove('รักสิคะ 💕')">รักสิคะ 💕</button>
                                 <button class="q-btn q-btn-run" id="noBtn" onmouseover="moveButton()" onclick="moveButton()">ไม่อยากบอก 😜</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 📌 หน้าบทสรุป -->
+                    <div class="timeline-item" id="endingPage">
+                        <div class="date">📅 The Next Chapter...</div>
+                        <div class="ending-card">
+                            <div class="ending-icon">👩‍❤️‍👨</div>
+                            <h3>ภารกิจสำเร็จแล้วนะคะ 💖</h3>
+                            <p>ขอบคุณที่เดินเข้ามาเป็นความสุขของพี่นะลมหนาว เรื่องราวในเว็บนี้อาจมาถึงหน้าสุดท้ายแล้ว แต่เรื่องราวของเรา พี่ยังอยากค่อย ๆ เขียนต่อไปด้วยกันอีกนานเลย</p>
+                            <p>พี่อาจไม่ใช่คนที่สมบูรณ์แบบ แต่พี่จะเรียนรู้ รับฟัง และพยายามเป็นคนที่ดูแลความรู้สึกของหนูให้ดีขึ้นในทุกวันนะคะ</p>
+                            <div class="ending-actions">
+                                <button class="btn" onclick="openApologyModal()">💌 อ่านจดหมายจากพี่อีกครั้ง</button>
+                                <button class="btn secondary" onclick="restartJourney()">📸 ย้อนดูความทรงจำตั้งแต่ต้น</button>
                             </div>
                         </div>
                     </div>
@@ -1014,7 +1205,22 @@
 
         // 🎚️ --- ฟังก์ชันปรับระดับเสียงเพลง ---
         function setVolume(val) {
-            music.volume = val;
+            const volume = Number(val);
+            music.volume = volume;
+
+            const menuSlider = document.getElementById('volumeControl');
+            const introSlider = document.getElementById('introVolumeControl');
+            const introValue = document.getElementById('introVolumeValue');
+            if (menuSlider && Number(menuSlider.value) !== volume) menuSlider.value = volume;
+            if (introSlider && Number(introSlider.value) !== volume) introSlider.value = volume;
+            if (introValue) introValue.innerText = `${Math.round(volume * 100)}%`;
+        }
+
+        function updateMusicControls() {
+            const icon = document.getElementById('musicSpinIcon');
+            const introBtn = document.getElementById('introMusicBtn');
+            if (icon) icon.classList.toggle('spinning', isPlaying);
+            if (introBtn) introBtn.innerText = isPlaying ? '🔊 กำลังเล่น' : '🔇 เปิดเพลง';
         }
 
         // ⏱️ --- ระบบคำนวณเวลารัก Real-time ---
@@ -1067,7 +1273,7 @@
             toast.classList.add('show');
             fireConfetti();
 
-            tracker.innerText = `🏆 ${unlockedAchievements.size}/6`;
+            tracker.innerText = `🏆 ${unlockedAchievements.size}/9`;
 
             setTimeout(() => {
                 toast.classList.remove('show');
@@ -1261,23 +1467,17 @@
 
             if (enteredPin === correctPin) {
                 document.getElementById('login-screen').style.display = 'none';
-                document.getElementById('main-content').style.display = 'flex';
-                document.getElementById('fabMenuContainer').style.display = 'flex';
+                document.getElementById('intro-screen').style.display = 'flex';
                 
                 music.volume = 0.25; 
                 let playPromise = music.play();
                 if (playPromise !== undefined) {
                     playPromise.then(() => {
                         isPlaying = true;
-                        document.getElementById('musicSpinIcon').classList.add('spinning');
+                        updateMusicControls();
                     }).catch(error => console.log("Autoplay blocked"));
                 }
                 
-                setInterval(createHeart, 400);
-                initPagination(); 
-                startTypewriter(0);
-                lockNextButton();
-
                 unlockAchievement('pin', '🔓 First Step: ถอดรหัสหัวใจสำเร็จ!');
             } else {
                 failCount++; 
@@ -1299,6 +1499,17 @@
             }
         }
 
+        function startJourney() {
+            document.getElementById('intro-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'flex';
+            document.getElementById('fabMenuContainer').style.display = 'flex';
+            initPagination();
+            startTypewriter(0);
+            lockNextButton();
+            setInterval(createHeart, 700);
+            fireConfetti();
+        }
+
         function changePage(direction) {
             items[currentPage].classList.remove('active');
             document.getElementById(`dot-${currentPage}`).classList.remove('active');
@@ -1310,7 +1521,11 @@
 
             document.getElementById('prevBtn').disabled = (currentPage === 0);
             
-            if (currentPage < totalPages - 1) {
+            if (currentPage === totalPages - 2) {
+                if (lockTimer) clearInterval(lockTimer);
+                document.getElementById('nextBtn').disabled = true;
+                document.getElementById('nextBtn').innerText = 'ตอบคำถามก่อนนะ 💕';
+            } else if (currentPage < totalPages - 1) {
                 lockNextButton();
             } else {
                 document.getElementById('nextBtn').disabled = true;
@@ -1348,12 +1563,39 @@
             document.getElementById('loveModal').style.display = 'none';
         }
 
+        function showEnding() {
+            closeLoveModal();
+            items[currentPage].classList.remove('active');
+            document.getElementById(`dot-${currentPage}`).classList.remove('active');
+            currentPage = totalPages - 1;
+            items[currentPage].classList.add('active');
+            document.getElementById(`dot-${currentPage}`).classList.add('active');
+            document.getElementById('prevBtn').disabled = false;
+            document.getElementById('nextBtn').disabled = true;
+            document.getElementById('nextBtn').innerText = 'เรื่องราวยังไม่จบ 💕';
+            unlockAchievement('master', '🏆 Master of Memories: เปิดอ่านจนถึงหน้าสุดท้าย!');
+            fireConfetti();
+        }
+
+        function restartJourney() {
+            items[currentPage].classList.remove('active');
+            document.getElementById(`dot-${currentPage}`).classList.remove('active');
+            currentPage = 0;
+            items[currentPage].classList.add('active');
+            document.getElementById(`dot-${currentPage}`).classList.add('active');
+            document.getElementById('prevBtn').disabled = true;
+            document.getElementById('nextBtn').disabled = false;
+            document.getElementById('nextBtn').innerText = 'หน้าถัดไป ▶';
+            startTypewriter(0);
+            lockNextButton();
+        }
+
         function createHeart() {
             const container = document.getElementById('appContainer');
             const heart = document.createElement('div');
             heart.classList.add('floating-heart');
             heart.innerHTML = '💖';
-            heart.style.left = Math.random() * 410 + 'px';
+            heart.style.left = Math.random() * Math.max(container.clientWidth - 30, 30) + 'px';
             heart.style.fontSize = (Math.random() * 14 + 12) + 'px';
             heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
             container.appendChild(heart);
@@ -1367,16 +1609,23 @@
         }
 
         function toggleMusic() {
-            const icon = document.getElementById('musicSpinIcon');
             if (isPlaying) { 
                 music.pause(); 
-                if (icon) icon.classList.remove('spinning');
+                isPlaying = false;
+                updateMusicControls();
             } else { 
-                music.play(); 
-                if (icon) icon.classList.add('spinning');
-                unlockAchievement('music', '🎶 Music Lover: เสียงเพลงบันดาลใจ!');
+                const playPromise = music.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        isPlaying = true;
+                        updateMusicControls();
+                        unlockAchievement('music', '🎶 Music Lover: เสียงเพลงบันดาลใจ!');
+                    }).catch(() => {
+                        isPlaying = false;
+                        updateMusicControls();
+                    });
+                }
             }
-            isPlaying = !isPlaying;
         }
     </script>
 </body>
