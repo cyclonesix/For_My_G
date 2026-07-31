@@ -812,6 +812,149 @@
         .ending-actions .btn { width: 100%; padding: 9px 14px; font-size: 12px; }
         .ending-actions .btn.secondary { color: #d81b60; background: #fff; border: 1.5px solid #ff80ab; box-shadow: none; }
 
+        /* ข้อความเสียงลับ */
+        .voice-invite-card {
+            position: relative;
+            min-height: 380px;
+            overflow: hidden;
+            border-radius: 22px;
+            background: #241827 url('love-voice-cover.png') center 58% / cover no-repeat;
+            box-shadow: 0 14px 32px rgba(62,31,61,.28);
+            cursor: pointer;
+            isolation: isolate;
+        }
+        .voice-invite-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(180deg, rgba(18,10,24,.08) 20%, rgba(22,10,27,.92) 100%);
+        }
+        .voice-invite-content {
+            position: absolute;
+            left: 18px; right: 18px; bottom: 18px;
+            color: #fff;
+            text-align: center;
+        }
+        .voice-secret-label {
+            display: inline-block;
+            margin-bottom: 8px;
+            padding: 5px 10px;
+            border: 1px solid rgba(255,255,255,.45);
+            border-radius: 20px;
+            background: rgba(255,255,255,.12);
+            backdrop-filter: blur(8px);
+            font: 10px 'Mali', cursive;
+        }
+        .voice-invite-content h3 { font: 600 19px 'Mali', cursive; margin-bottom: 6px; }
+        .voice-invite-content p { color: rgba(255,255,255,.78); font: 11px/1.6 'Mali', cursive; margin-bottom: 12px; }
+        .voice-open-btn {
+            width: 100%;
+            padding: 11px 14px;
+            border: 0;
+            border-radius: 22px;
+            color: #fff;
+            background: linear-gradient(90deg, #ff5d93, #e91e63);
+            box-shadow: 0 6px 18px rgba(233,30,99,.35);
+            font: 600 12px 'Mali', cursive;
+            cursor: pointer;
+        }
+
+        .voice-story-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: #130d18;
+        }
+        .voice-story-modal.open { display: flex; }
+        .voice-story-scene {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 440px;
+            overflow: hidden;
+            color: #fff;
+            background: #19101e;
+        }
+        .voice-story-bg {
+            position: absolute;
+            inset: -4%;
+            background: url('love-voice-cover.png') center / cover no-repeat;
+            animation: voiceKenBurns 18s ease-in-out infinite alternate;
+        }
+        .voice-story-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,5,15,.2), rgba(12,6,18,.15) 45%, rgba(10,5,15,.95) 100%); }
+        @keyframes voiceKenBurns { from { transform: scale(1.02); } to { transform: scale(1.12) translateY(-1.5%); } }
+        .voice-star { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #ffd8e7; box-shadow: 0 0 8px #ff8bb3; animation: twinkle 2.4s ease-in-out infinite; }
+        .voice-star.s1 { top: 13%; left: 18%; }
+        .voice-star.s2 { top: 24%; right: 16%; animation-delay: .8s; }
+        .voice-star.s3 { top: 36%; left: 31%; animation-delay: 1.4s; }
+        @keyframes twinkle { 0%,100% { opacity:.25; transform:scale(.8); } 50% { opacity:1; transform:scale(1.7); } }
+        .voice-close-btn {
+            position: absolute; top: max(16px, env(safe-area-inset-top)); right: 16px; z-index: 3;
+            width: 38px; height: 38px; border: 1px solid rgba(255,255,255,.4); border-radius: 50%;
+            background: rgba(15,8,20,.35); backdrop-filter: blur(8px); color: #fff; font-size: 17px; cursor: pointer;
+        }
+        .voice-story-copy { position: absolute; top: 9%; left: 24px; right: 24px; z-index: 2; text-align: center; text-shadow: 0 2px 12px rgba(0,0,0,.6); }
+        .voice-story-copy small { color: #ffd1e0; font: 10px 'Mali', cursive; letter-spacing: 1.2px; }
+        .voice-story-copy h2 { color: #fff; font: 600 22px 'Mali', cursive; margin: 8px 0; }
+        .voice-story-copy p { color: rgba(255,255,255,.8); font: 11px/1.7 'Mali', cursive; }
+        .voice-player-panel {
+            position: absolute; left: 16px; right: 16px; bottom: max(18px, env(safe-area-inset-bottom)); z-index: 2;
+            padding: 16px;
+            border: 1px solid rgba(255,255,255,.22);
+            border-radius: 22px;
+            background: rgba(27,13,31,.72);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.3);
+        }
+        .voice-wave { height: 30px; display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 11px; }
+        .voice-wave span { width: 3px; height: 8px; border-radius: 4px; background: linear-gradient(#ffd1e0,#ff4f8b); opacity: .7; }
+        .voice-wave.playing span { animation: voiceWave .8s ease-in-out infinite alternate; }
+        .voice-wave span:nth-child(2n) { animation-delay: .18s; }
+        .voice-wave span:nth-child(3n) { animation-delay: .35s; }
+        @keyframes voiceWave { from { height: 6px; } to { height: 27px; } }
+        .voice-player-row { display: flex; align-items: center; gap: 10px; }
+        .voice-play-btn { width: 46px; height: 46px; flex: 0 0 auto; border: 0; border-radius: 50%; background: linear-gradient(145deg,#ff6699,#e91e63); color: #fff; font-size: 18px; box-shadow: 0 6px 18px rgba(233,30,99,.4); cursor: pointer; }
+        .voice-progress-wrap { flex: 1; min-width: 0; }
+        .voice-progress { width: 100%; accent-color: #ff5d93; cursor: pointer; }
+        .voice-time { display: flex; justify-content: space-between; color: rgba(255,255,255,.65); font-size: 9px; margin-top: 3px; }
+        .voice-status { margin-top: 9px; color: #ffd1e0; font: 10px/1.5 'Mali', cursive; text-align: center; }
+        .voice-audio-setup {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .audio-source-box {
+            padding: 8px;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 13px;
+            background: rgba(255,255,255,.07);
+            min-width: 0;
+        }
+        .audio-source-title { color: #fff; font: 600 10px 'Mali', cursive; margin-bottom: 6px; }
+        .audio-file-label {
+            display: block;
+            padding: 6px 5px;
+            overflow: hidden;
+            border-radius: 9px;
+            background: rgba(255,93,147,.18);
+            border: 1px solid rgba(255,121,165,.4);
+            color: #ffd8e6;
+            font: 9px 'Mali', cursive;
+            text-align: center;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .audio-volume-row { display: flex; align-items: center; gap: 5px; margin-top: 7px; }
+        .audio-volume-row span { color: rgba(255,255,255,.7); font-size: 9px; white-space: nowrap; }
+        .audio-mini-slider { width: 100%; min-width: 0; accent-color: #ff5d93; cursor: pointer; }
+        .audio-percent { width: 25px; text-align: right; }
+
         /* ตัวบอกหน้า (Page Indicator) */
         .page-indicator { display: flex; justify-content: center; gap: 6px; margin: 10px 0 6px 0; }
         .dot { width: 7px; height: 7px; background: #f8bbd0; border-radius: 50%; transition: all 0.3s; }
@@ -956,7 +1099,7 @@
                         <div class="envelope-front"></div>
                         <div class="letter-content">
                            <img src="https://i.ibb.co/KTPkZ7q/Chat-GPT-Image-26-2569-21-04-21.png" alt="Memory Envelope" onclick="event.stopPropagation(); openLightbox(this.src);">
-                            <p>พี่ขอโทษนะคะลมหนาว ลมหนาวบอกพี่ได้มั้ยคะว่าหนูเป็นอะไร พี่ทำอะไรผิด พี่ก็อยากจะคุยด้วย หากเรื่องไหนที่เราไม่เข้าใจกัน พูดคุยกันได้มั้ยคะ อย่าเงียบไปเลย พี่รักหนูนะคะ 💕</p>
+                            <p>เรากลับมาคุยกันได้มั้ยคะ พี่อยู่ไม่ได้แล้ว พี่ต้องการหนูมาก ๆ เลย พี่รักหนูนะคะ 💕</p>
                         </div>
                     </div>
                 </div>
@@ -1013,6 +1156,55 @@
             </div>
         </div>
 
+        <!-- ฉากข้อความเสียงจากพี่ทอย -->
+        <div id="voiceStoryModal" class="voice-story-modal" role="dialog" aria-modal="true" aria-label="ข้อความเสียงจากพี่ทอย">
+            <div class="voice-story-scene">
+                <div class="voice-story-bg"></div>
+                <div class="voice-story-shade"></div>
+                <span class="voice-star s1"></span><span class="voice-star s2"></span><span class="voice-star s3"></span>
+                <button class="voice-close-btn" onclick="closeVoiceStory()" aria-label="ปิดข้อความเสียง">✕</button>
+                <div class="voice-story-copy">
+                    <small>A VOICE FROM MY HEART</small>
+                    <h2>ฟังเสียงของพี่นะคะ 💕</h2>
+                    <p>บางความรู้สึกเขียนออกมาได้ไม่หมด<br>พี่เลยอยากให้หนูได้ยินจากเสียงของพี่เอง</p>
+                </div>
+                <div class="voice-player-panel">
+                    <div class="voice-audio-setup">
+                        <div class="audio-source-box">
+                            <div class="audio-source-title">🎙️ เสียงของพี่</div>
+                            <label class="audio-file-label" id="voiceFileLabel" for="voiceFileInput">＋ เลือก MP3 / MP4</label>
+                            <input id="voiceFileInput" type="file" accept="audio/*,video/mp4,.mp3,.mp4" hidden onchange="loadVoiceFile(this.files[0])">
+                            <div class="audio-volume-row">
+                                <span>🔊</span>
+                                <input class="audio-mini-slider" id="voiceVolumeSlider" type="range" min="0" max="1" step="0.05" value="1" oninput="setVoiceVolume(this.value)">
+                                <span class="audio-percent" id="voiceVolumeValue">100%</span>
+                            </div>
+                        </div>
+                        <div class="audio-source-box">
+                            <div class="audio-source-title">🎵 เพลงประกอบ</div>
+                            <div class="audio-file-label" title="หลงรักเธอจะตายแล้ว (Falling) - Snowman">🔒 Falling — Snowman</div>
+                            <div class="audio-volume-row">
+                                <span>🔉</span>
+                                <input class="audio-mini-slider" id="bgVoiceVolumeSlider" type="range" min="0" max="0.4" step="0.02" value="0.10" oninput="setVoiceBackgroundVolume(this.value)">
+                                <span class="audio-percent" id="bgVoiceVolumeValue">10%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="voice-wave" id="voiceWave">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="voice-player-row">
+                        <button class="voice-play-btn" id="voicePlayBtn" onclick="toggleVoiceMessage()" aria-label="เล่นหรือหยุดข้อความเสียง">▶</button>
+                        <div class="voice-progress-wrap">
+                            <input class="voice-progress" id="voiceProgress" type="range" min="0" max="100" value="0" oninput="seekVoice(this.value)" aria-label="ตำแหน่งข้อความเสียง">
+                            <div class="voice-time"><span id="voiceCurrentTime">0:00</span><span id="voiceDuration">--:--</span></div>
+                        </div>
+                    </div>
+                    <div class="voice-status" id="voiceStatus">กดปุ่มเล่นเมื่อหนูพร้อมนะคะ 🎧</div>
+                </div>
+            </div>
+        </div>
+
         <!-- หน้าหลัก -->
         <div id="main-content">
             <div>
@@ -1021,7 +1213,7 @@
                 
                 <div class="header-badge-group">
                     <div class="love-counter-badge">✨ คุยกันมา <span id="loveTimer">0 วัน 0 ชม. 0 นาที 0 วินาที</span> ✨</div>
-                    <div class="achievement-tracker-badge" id="achievementTracker">🏆 0/9</div>
+                    <div class="achievement-tracker-badge" id="achievementTracker">🏆 0/10</div>
                 </div>
             </div>
 
@@ -1137,6 +1329,20 @@
                         <div class="sticker-footer"><span>👩‍❤️‍👨 Sweet Moment</span><span>•</span><span>Love You 💕</span></div>
                     </div>
 
+                    <!-- 📌 หน้าข้อความเสียงลับ -->
+                    <div class="timeline-item">
+                        <div class="date">🎙️ A Voice From My Heart</div>
+                        <div class="voice-invite-card" onclick="openVoiceStory()" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openVoiceStory();}">
+                            <div class="voice-invite-content">
+                                <span class="voice-secret-label">🔒 PRIVATE VOICE MESSAGE</span>
+                                <h3>มีบางอย่างที่พี่อยากให้หนูฟัง</h3>
+                                <p>ไม่ใช่ข้อความที่พิมพ์ไว้ แต่เป็นความรู้สึกจากเสียงของพี่เอง</p>
+                                <button class="voice-open-btn" onclick="event.stopPropagation(); openVoiceStory();">🎧 เปิดฟังเสียงจากหัวใจ</button>
+                            </div>
+                        </div>
+                        <div class="sticker-footer"><span>🎙️ From P'Toy</span><span>•</span><span>For Lomnao Only 💕</span></div>
+                    </div>
+
                     <!-- 📌 หน้าคำถามเซอร์ไพรส์ พร้อมระบบกล่องคำพูดโต้ตอบ -->
                     <div class="timeline-item">
                         <div class="date">📅 One Last Question...</div>
@@ -1183,6 +1389,8 @@
         <audio id="bgMusic" playsinline preload="auto">
             <source src="love.mp3" type="audio/mp3">
         </audio>
+        <audio id="voiceMessage" playsinline preload="metadata" src="voice-message.mp3"></audio>
+        <audio id="voiceBgMusic" playsinline preload="auto" loop src="voice-background.mp3"></audio>
     </div>
 
     <script>
@@ -1197,6 +1405,13 @@
         let noBtnClickCount = 0;
 
         let music = document.getElementById('bgMusic');
+        let voiceMessage = document.getElementById('voiceMessage');
+        let voiceBgMusic = document.getElementById('voiceBgMusic');
+        let baseMusicVolume = 0.25;
+        let voiceBackgroundVolume = 0.10;
+        let musicWasPlayingBeforeVoice = false;
+        let voiceObjectUrl = null;
+        let volumeFadeTimer = null;
 
         // 🎯 --- ฟังก์ชันสลับเมนูลัดลอยตัว (FAB Menu) ---
         function toggleFabMenu() {
@@ -1206,6 +1421,7 @@
         // 🎚️ --- ฟังก์ชันปรับระดับเสียงเพลง ---
         function setVolume(val) {
             const volume = Number(val);
+            baseMusicVolume = volume;
             music.volume = volume;
 
             const menuSlider = document.getElementById('volumeControl');
@@ -1273,7 +1489,7 @@
             toast.classList.add('show');
             fireConfetti();
 
-            tracker.innerText = `🏆 ${unlockedAchievements.size}/9`;
+            tracker.innerText = `🏆 ${unlockedAchievements.size}/10`;
 
             setTimeout(() => {
                 toast.classList.remove('show');
@@ -1313,7 +1529,8 @@
             "🤗 คูปองกอดฟรี อุ่นๆ 100 ครั้ง!",
             "🍦 คูปองเลี้ยงไอศกรีม/ขนมหวานตามใจชอบ!",
             "🎮 คูปองเล่นเกมด้วยกันทั้งคืน ห้ามบ่น!",
-            "👑 คูปองเป็นเจ้าหญิง 1 วัน สั่งอะไรก็ได้!"
+            "👑 คูปองเป็นเจ้าหญิง 1 วัน สั่งอะไรก็ได้!",
+            " ♥ ขออะไรก็ได้ แต่เป็นอะไรที่พี่ทำได้นะ!"
         ];
 
         function openGachaModal() {
@@ -1562,6 +1779,142 @@
         function closeLoveModal() {
             document.getElementById('loveModal').style.display = 'none';
         }
+
+        function openVoiceStory() {
+            document.getElementById('voiceStoryModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            musicWasPlayingBeforeVoice = isPlaying;
+            if (isPlaying) {
+                fadeMusicTo(0, 400);
+                setTimeout(() => {
+                    if (document.getElementById('voiceStoryModal').classList.contains('open')) {
+                        music.pause();
+                        isPlaying = false;
+                        updateMusicControls();
+                    }
+                }, 420);
+            }
+            voiceBgMusic.currentTime = 0;
+            voiceBgMusic.volume = 0;
+            voiceBgMusic.play().then(() => fadeVoiceBackgroundTo(voiceBackgroundVolume, 650)).catch(() => {
+                document.getElementById('voiceStatus').innerText = 'แตะปุ่มเล่นเพื่อเริ่มเสียงและเพลงนะคะ 🎧';
+            });
+            unlockAchievement('voice_message', '🎙️ From the Heart: เปิดข้อความเสียงจากพี่!');
+        }
+
+        function closeVoiceStory() {
+            document.getElementById('voiceStoryModal').classList.remove('open');
+            document.body.style.overflow = '';
+            voiceMessage.pause();
+            updateVoicePlayer(false);
+            voiceBgMusic.pause();
+            voiceBgMusic.currentTime = 0;
+            if (musicWasPlayingBeforeVoice) {
+                music.volume = 0;
+                music.play().then(() => {
+                    isPlaying = true;
+                    updateMusicControls();
+                    fadeMusicTo(baseMusicVolume, 750);
+                }).catch(() => {});
+            }
+            musicWasPlayingBeforeVoice = false;
+        }
+
+        function fadeMusicTo(target, duration = 500) {
+            if (volumeFadeTimer) clearInterval(volumeFadeTimer);
+            const start = music.volume;
+            const steps = 20;
+            let step = 0;
+            volumeFadeTimer = setInterval(() => {
+                step++;
+                music.volume = Math.max(0, Math.min(1, start + (target - start) * (step / steps)));
+                if (step >= steps) clearInterval(volumeFadeTimer);
+            }, duration / steps);
+        }
+
+        function setVoiceVolume(value) {
+            voiceMessage.volume = Number(value);
+            document.getElementById('voiceVolumeValue').innerText = `${Math.round(Number(value) * 100)}%`;
+        }
+
+        function setVoiceBackgroundVolume(value) {
+            voiceBackgroundVolume = Number(value);
+            voiceBgMusic.volume = voiceBackgroundVolume;
+            document.getElementById('bgVoiceVolumeValue').innerText = `${Math.round(voiceBackgroundVolume * 100)}%`;
+        }
+
+        function fadeVoiceBackgroundTo(target, duration = 500) {
+            const start = voiceBgMusic.volume;
+            const steps = 20;
+            let step = 0;
+            const timer = setInterval(() => {
+                step++;
+                voiceBgMusic.volume = Math.max(0, Math.min(1, start + (target - start) * (step / steps)));
+                if (step >= steps) clearInterval(timer);
+            }, duration / steps);
+        }
+
+        function shortFileName(name) {
+            return name.length > 18 ? name.slice(0, 15) + '…' : name;
+        }
+
+        function loadVoiceFile(file) {
+            if (!file) return;
+            if (voiceObjectUrl) URL.revokeObjectURL(voiceObjectUrl);
+            voiceObjectUrl = URL.createObjectURL(file);
+            voiceMessage.src = voiceObjectUrl;
+            voiceMessage.load();
+            document.getElementById('voiceFileLabel').innerText = `✓ ${shortFileName(file.name)}`;
+            document.getElementById('voiceStatus').innerText = 'ใส่เสียงของพี่เรียบร้อยแล้ว กดเล่นได้เลยนะคะ 💕';
+        }
+
+        function toggleVoiceMessage() {
+            if (voiceMessage.paused) {
+                if (voiceBgMusic.paused) {
+                    voiceBgMusic.play().then(() => fadeVoiceBackgroundTo(voiceBackgroundVolume, 350)).catch(() => {});
+                }
+                voiceMessage.play().then(() => {
+                    updateVoicePlayer(true);
+                    document.getElementById('voiceStatus').innerText = 'กำลังฟังเสียงจากหัวใจของพี่... 💗';
+                }).catch(() => {
+                    document.getElementById('voiceStatus').innerText = 'ใส่ไฟล์ voice-message.mp3 ไว้ข้าง index.html ก่อนนะคะ';
+                });
+            } else {
+                voiceMessage.pause();
+                updateVoicePlayer(false);
+                document.getElementById('voiceStatus').innerText = 'หยุดไว้ตรงนี้ กดเล่นเพื่อฟังต่อนะคะ';
+            }
+        }
+
+        function updateVoicePlayer(playing) {
+            document.getElementById('voicePlayBtn').innerText = playing ? '❚❚' : '▶';
+            document.getElementById('voiceWave').classList.toggle('playing', playing);
+        }
+
+        function formatVoiceTime(seconds) {
+            if (!Number.isFinite(seconds)) return '--:--';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${mins}:${secs}`;
+        }
+
+        function seekVoice(value) {
+            if (Number.isFinite(voiceMessage.duration)) voiceMessage.currentTime = (Number(value) / 100) * voiceMessage.duration;
+        }
+
+        voiceMessage.addEventListener('loadedmetadata', () => {
+            document.getElementById('voiceDuration').innerText = formatVoiceTime(voiceMessage.duration);
+        });
+        voiceMessage.addEventListener('timeupdate', () => {
+            const percent = voiceMessage.duration ? (voiceMessage.currentTime / voiceMessage.duration) * 100 : 0;
+            document.getElementById('voiceProgress').value = percent;
+            document.getElementById('voiceCurrentTime').innerText = formatVoiceTime(voiceMessage.currentTime);
+        });
+        voiceMessage.addEventListener('ended', () => {
+            updateVoicePlayer(false);
+            document.getElementById('voiceStatus').innerText = 'ขอบคุณที่ฟังจนจบนะคะ — จากพี่ทอย 💕';
+            fireConfetti();
+        });
 
         function showEnding() {
             closeLoveModal();
