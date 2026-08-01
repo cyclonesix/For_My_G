@@ -955,6 +955,71 @@
         .audio-mini-slider { width: 100%; min-width: 0; accent-color: #ff5d93; cursor: pointer; }
         .audio-percent { width: 25px; text-align: right; }
 
+        /* กล่องเสียงลับหน้าสุดท้าย */
+        .secret-lock-card {
+            position: relative;
+            min-height: 410px;
+            overflow: hidden;
+            border-radius: 22px;
+            background: #101722 url('secret-voice-cover.png') center 58% / cover no-repeat;
+            box-shadow: 0 14px 34px rgba(12,22,36,.34);
+            isolation: isolate;
+        }
+        .secret-lock-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(180deg, rgba(5,12,20,.08), rgba(7,14,24,.92) 78%, #080f18 100%);
+        }
+        .secret-lock-content { position: absolute; left: 18px; right: 18px; bottom: 18px; color: #fff; text-align: center; }
+        .secret-lock-icon { font-size: 31px; margin-bottom: 5px; filter: drop-shadow(0 3px 8px rgba(0,0,0,.5)); }
+        .secret-lock-content h3 { font: 600 18px 'Mali', cursive; margin-bottom: 5px; }
+        .secret-lock-content p { color: rgba(255,255,255,.7); font: 10.5px/1.6 'Mali', cursive; margin-bottom: 10px; }
+        .secret-pin-row { display: flex; gap: 7px; }
+        .secret-pin-input {
+            flex: 1;
+            min-width: 0;
+            height: 42px;
+            padding: 0 14px;
+            border: 1px solid rgba(255,255,255,.35);
+            border-radius: 20px;
+            outline: 0;
+            background: rgba(255,255,255,.12);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font: 600 17px 'Prompt', sans-serif;
+            text-align: center;
+            letter-spacing: 7px;
+        }
+        .secret-pin-input::placeholder { color: rgba(255,255,255,.45); font-size: 10px; letter-spacing: 0; }
+        .secret-unlock-btn { width: 74px; border: 0; border-radius: 20px; background: linear-gradient(135deg,#7aa7c7,#c37b9b); color: #fff; font: 600 11px 'Mali', cursive; cursor: pointer; }
+        .secret-hint { min-height: 18px; margin-top: 7px; color: #ffd0df; font: 10px 'Mali', cursive; }
+
+        .secret-voice-modal { position: fixed; inset: 0; z-index: 1300; display: none; justify-content: center; align-items: center; background: #060b12; }
+        .secret-voice-modal.open { display: flex; }
+        .secret-scene { position: relative; width: 100%; height: 100%; max-width: 440px; overflow: hidden; background: #0b111a; color: #fff; }
+        .secret-scene-bg { position: absolute; inset: -4%; background: url('secret-voice-cover.png') center / cover no-repeat; animation: secretDrift 20s ease-in-out infinite alternate; }
+        @keyframes secretDrift { from { transform: scale(1.02) translateX(0); } to { transform: scale(1.10) translateX(-1.5%); } }
+        .secret-scene-shade { position: absolute; inset: 0; background: linear-gradient(180deg,rgba(2,8,16,.28),rgba(5,10,18,.08) 48%,rgba(4,9,16,.96) 100%); }
+        .rain-layer { position: absolute; inset: -20%; opacity: .22; background: repeating-linear-gradient(105deg, transparent 0 17px, rgba(180,215,235,.55) 18px, transparent 19px 34px); animation: rainMove 1.2s linear infinite; }
+        @keyframes rainMove { from { transform: translateY(-8%); } to { transform: translateY(8%); } }
+        .secret-copy { position: absolute; top: 9%; left: 24px; right: 24px; z-index: 2; text-align: center; text-shadow: 0 3px 15px #000; }
+        .secret-copy small { color: #b9d4e6; font: 10px 'Mali', cursive; letter-spacing: 1.2px; }
+        .secret-copy h2 { margin-top: 9px; color: #fff; font: 600 23px/1.55 'Mali', cursive; }
+        .secret-copy h2 span { display: block; opacity: 0; animation: secretWords 1.2s ease forwards; }
+        .secret-copy h2 span:nth-child(2) { color: #ffd0df; animation-delay: 1.2s; }
+        @keyframes secretWords { from { opacity:0; transform:translateY(12px); filter:blur(5px); } to { opacity:1; transform:none; filter:blur(0); } }
+        .secret-player { position: absolute; left: 16px; right: 16px; bottom: max(18px, env(safe-area-inset-bottom)); z-index: 3; padding: 16px; border: 1px solid rgba(190,220,238,.22); border-radius: 22px; background: rgba(6,14,24,.78); backdrop-filter: blur(18px); box-shadow: 0 14px 35px rgba(0,0,0,.4); }
+        .secret-player-title { margin-bottom: 11px; color: #dbeaf3; font: 11px 'Mali', cursive; text-align: center; }
+        .secret-player-row { display: flex; align-items: center; gap: 10px; }
+        .secret-play-btn { width: 48px; height: 48px; flex: 0 0 auto; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: linear-gradient(145deg,#648eaa,#ad6d8b); color:#fff; font-size:18px; cursor:pointer; }
+        .secret-progress-wrap { flex:1; min-width:0; }
+        .secret-progress { width:100%; accent-color:#c985a2; cursor:pointer; }
+        .secret-time { display:flex; justify-content:space-between; margin-top:3px; color:rgba(255,255,255,.58); font-size:9px; }
+        .secret-volume { display:flex; align-items:center; gap:7px; margin-top:10px; color:rgba(255,255,255,.65); font-size:9px; }
+        .secret-volume input { flex:1; accent-color:#c985a2; }
+
         /* ตัวบอกหน้า (Page Indicator) */
         .page-indicator { display: flex; justify-content: center; gap: 6px; margin: 10px 0 6px 0; }
         .dot { width: 7px; height: 7px; background: #f8bbd0; border-radius: 50%; transition: all 0.3s; }
@@ -1205,6 +1270,34 @@
             </div>
         </div>
 
+        <!-- ข้อความเสียงลับกล่องที่สอง -->
+        <div id="secretVoiceModal" class="secret-voice-modal" role="dialog" aria-modal="true" aria-label="ข้อความเสียงลับจากพี่ทอย">
+            <div class="secret-scene">
+                <div class="secret-scene-bg"></div>
+                <div class="secret-scene-shade"></div>
+                <div class="rain-layer"></div>
+                <button class="voice-close-btn" onclick="closeSecretVoice()" aria-label="ปิดข้อความเสียงลับ">✕</button>
+                <div class="secret-copy">
+                    <small>ONE LAST THING FROM MY HEART</small>
+                    <h2><span>พี่รักหนูจริงนะ</span><span>พี่เชื่อใจหนูมากจริง ๆ</span></h2>
+                </div>
+                <div class="secret-player">
+                    <div class="secret-player-title">🎙️ ข้อความที่พี่อยากให้หนูฟังจนจบ</div>
+                    <div class="voice-wave" id="secretWave">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="secret-player-row">
+                        <button class="secret-play-btn" id="secretPlayBtn" onclick="toggleSecretVoice()" aria-label="เล่นหรือหยุดข้อความเสียงลับ">❚❚</button>
+                        <div class="secret-progress-wrap">
+                            <input class="secret-progress" id="secretProgress" type="range" min="0" max="100" value="0" oninput="seekSecretVoice(this.value)" aria-label="ตำแหน่งข้อความเสียงลับ">
+                            <div class="secret-time"><span id="secretCurrentTime">0:00</span><span id="secretDuration">--:--</span></div>
+                        </div>
+                    </div>
+                    <div class="secret-volume"><span>🔊 เสียงพี่</span><input id="secretVolume" type="range" min="0" max="1" step="0.05" value="1" oninput="secretVoice.volume=Number(this.value)"></div>
+                </div>
+            </div>
+        </div>
+
         <!-- หน้าหลัก -->
         <div id="main-content">
             <div>
@@ -1213,7 +1306,7 @@
                 
                 <div class="header-badge-group">
                     <div class="love-counter-badge">✨ คุยกันมา <span id="loveTimer">0 วัน 0 ชม. 0 นาที 0 วินาที</span> ✨</div>
-                    <div class="achievement-tracker-badge" id="achievementTracker">🏆 0/10</div>
+                    <div class="achievement-tracker-badge" id="achievementTracker">🏆 0/11</div>
                 </div>
             </div>
 
@@ -1344,7 +1437,7 @@
                     </div>
 
                     <!-- 📌 หน้าคำถามเซอร์ไพรส์ พร้อมระบบกล่องคำพูดโต้ตอบ -->
-                    <div class="timeline-item">
+                    <div class="timeline-item" id="loveQuestionPage">
                         <div class="date">📅 One Last Question...</div>
                         <div class="question-card">
                             <h3 id="questionTitleText">รักพี่เหมือนกันมั้ยคะ? 🥺💖</h3>
@@ -1369,6 +1462,24 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- 📌 หน้าสุดท้าย: กล่องเสียงใส่รหัส -->
+                    <div class="timeline-item" id="secretVoicePage">
+                        <div class="date">🔒 One Last Secret...</div>
+                        <div class="secret-lock-card">
+                            <div class="secret-lock-content">
+                                <div class="secret-lock-icon">🔐</div>
+                                <h3>ยังมีอีกหนึ่งเรื่องที่พี่อยากบอก</h3>
+                                <p>กล่องนี้เก็บความรู้สึกสุดท้ายของพี่ไว้<br>ใส่รหัส 4 หลักเพื่อเปิดฟังนะคะ</p>
+                                <div class="secret-pin-row">
+                                    <input id="secretPin" class="secret-pin-input" type="password" inputmode="numeric" maxlength="4" placeholder="รหัส 4 หลัก" onkeydown="if(event.key==='Enter')verifySecretPin()">
+                                    <button class="secret-unlock-btn" onclick="verifySecretPin()">เปิด 🔓</button>
+                                </div>
+                                <div class="secret-hint" id="secretHint"></div>
+                            </div>
+                        </div>
+                        <div class="sticker-footer"><span>🌧️ Private Memory</span><span>•</span><span>For Lomnao Only</span></div>
+                    </div>
                 </div>
             </div>
 
@@ -1391,6 +1502,7 @@
         </audio>
         <audio id="voiceMessage" playsinline preload="metadata" src="voice-message.mp3"></audio>
         <audio id="voiceBgMusic" playsinline preload="auto" loop src="voice-background.mp3"></audio>
+        <audio id="secretVoice" playsinline preload="metadata" src="secret-voice-message.m4a"></audio>
     </div>
 
     <script>
@@ -1407,11 +1519,13 @@
         let music = document.getElementById('bgMusic');
         let voiceMessage = document.getElementById('voiceMessage');
         let voiceBgMusic = document.getElementById('voiceBgMusic');
+        let secretVoice = document.getElementById('secretVoice');
         let baseMusicVolume = 0.25;
         let voiceBackgroundVolume = 0.10;
         let musicWasPlayingBeforeVoice = false;
         let voiceObjectUrl = null;
         let volumeFadeTimer = null;
+        let secretMusicWasPlaying = false;
 
         // 🎯 --- ฟังก์ชันสลับเมนูลัดลอยตัว (FAB Menu) ---
         function toggleFabMenu() {
@@ -1489,7 +1603,7 @@
             toast.classList.add('show');
             fireConfetti();
 
-            tracker.innerText = `🏆 ${unlockedAchievements.size}/10`;
+            tracker.innerText = `🏆 ${unlockedAchievements.size}/11`;
 
             setTimeout(() => {
                 toast.classList.remove('show');
@@ -1738,7 +1852,7 @@
 
             document.getElementById('prevBtn').disabled = (currentPage === 0);
             
-            if (currentPage === totalPages - 2) {
+            if (items[currentPage].id === 'loveQuestionPage') {
                 if (lockTimer) clearInterval(lockTimer);
                 document.getElementById('nextBtn').disabled = true;
                 document.getElementById('nextBtn').innerText = 'ตอบคำถามก่อนนะ 💕';
@@ -1916,17 +2030,103 @@
             fireConfetti();
         });
 
+        function verifySecretPin() {
+            const input = document.getElementById('secretPin');
+            const hint = document.getElementById('secretHint');
+            if (input.value === '2002') {
+                hint.innerText = '';
+                openSecretVoice();
+            } else {
+                hint.innerText = 'คำใบ้: 24ปี 💭';
+                input.value = '';
+                input.focus();
+                input.animate([
+                    { transform: 'translateX(0)' }, { transform: 'translateX(-7px)' },
+                    { transform: 'translateX(7px)' }, { transform: 'translateX(0)' }
+                ], { duration: 280 });
+            }
+        }
+
+        function openSecretVoice() {
+            document.getElementById('secretVoiceModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            secretMusicWasPlaying = isPlaying;
+            voiceBgMusic.pause();
+            voiceMessage.pause();
+            updateVoicePlayer(false);
+            if (isPlaying) {
+                fadeMusicTo(0, 350);
+                setTimeout(() => {
+                    if (document.getElementById('secretVoiceModal').classList.contains('open')) {
+                        music.pause();
+                        isPlaying = false;
+                        updateMusicControls();
+                    }
+                }, 380);
+            }
+            secretVoice.currentTime = 0;
+            secretVoice.play().then(() => updateSecretPlayer(true)).catch(() => updateSecretPlayer(false));
+            unlockAchievement('final_secret', '🔐 True Heart: เปิดฟังความรู้สึกสุดท้ายของพี่!');
+        }
+
+        function closeSecretVoice() {
+            document.getElementById('secretVoiceModal').classList.remove('open');
+            document.body.style.overflow = '';
+            secretVoice.pause();
+            updateSecretPlayer(false);
+            if (secretMusicWasPlaying) {
+                music.volume = 0;
+                music.play().then(() => {
+                    isPlaying = true;
+                    updateMusicControls();
+                    fadeMusicTo(baseMusicVolume, 750);
+                }).catch(() => {});
+            }
+            secretMusicWasPlaying = false;
+        }
+
+        function toggleSecretVoice() {
+            if (secretVoice.paused) {
+                secretVoice.play().then(() => updateSecretPlayer(true)).catch(() => {});
+            } else {
+                secretVoice.pause();
+                updateSecretPlayer(false);
+            }
+        }
+
+        function updateSecretPlayer(playing) {
+            document.getElementById('secretPlayBtn').innerText = playing ? '❚❚' : '▶';
+            document.getElementById('secretWave').classList.toggle('playing', playing);
+        }
+
+        function seekSecretVoice(value) {
+            if (Number.isFinite(secretVoice.duration)) secretVoice.currentTime = (Number(value) / 100) * secretVoice.duration;
+        }
+
+        secretVoice.addEventListener('loadedmetadata', () => {
+            document.getElementById('secretDuration').innerText = formatVoiceTime(secretVoice.duration);
+        });
+        secretVoice.addEventListener('timeupdate', () => {
+            const percent = secretVoice.duration ? (secretVoice.currentTime / secretVoice.duration) * 100 : 0;
+            document.getElementById('secretProgress').value = percent;
+            document.getElementById('secretCurrentTime').innerText = formatVoiceTime(secretVoice.currentTime);
+        });
+        secretVoice.addEventListener('ended', () => {
+            updateSecretPlayer(false);
+            fireConfetti();
+        });
+
         function showEnding() {
             closeLoveModal();
             items[currentPage].classList.remove('active');
             document.getElementById(`dot-${currentPage}`).classList.remove('active');
-            currentPage = totalPages - 1;
+            currentPage = Array.from(items).indexOf(document.getElementById('endingPage'));
             items[currentPage].classList.add('active');
             document.getElementById(`dot-${currentPage}`).classList.add('active');
             document.getElementById('prevBtn').disabled = false;
-            document.getElementById('nextBtn').disabled = true;
-            document.getElementById('nextBtn').innerText = 'เรื่องราวยังไม่จบ 💕';
-            unlockAchievement('master', '🏆 Master of Memories: เปิดอ่านจนถึงหน้าสุดท้าย!');
+            document.getElementById('nextBtn').disabled = false;
+            document.getElementById('nextBtn').innerText = 'ความลับสุดท้าย ▶';
+            unlockAchievement('master', '🏆 Master of Memories: เปิดอ่านเรื่องราวของเราจนครบ!');
             fireConfetti();
         }
 
